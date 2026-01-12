@@ -23,7 +23,7 @@ client = AzureOpenAI(
     api_version="2025-04-01-preview" # Use a compatible API version
 )
 
-def agent():
+def resume_agent():
     """Reads a file and sends it to Azure AI for initial analysis."""
     rif = Path.cwd()/"input_files/RIF.pdf"
     rif_data = extract_form_data(rif)
@@ -85,4 +85,4 @@ def save_to_word(content, output_path):
         
 # --- Main Analysis Loop ---
 if __name__ == "__main__":
-    agent()
+    resume_agent()
