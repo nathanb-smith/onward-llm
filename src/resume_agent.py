@@ -51,7 +51,7 @@ def resume_agent():
         conversation_history.append({"role": "assistant", "content": assistant_message})
         mk = conversation_history[-1]["content"]        
         # Save the assistant message to a Word document
-        output_path = Path.cwd() / "output_files/generated_resume.docx"
+        output_path = Path.cwd() / "resume_files/resume.docx"
         save_to_word(mk, output_path)
     except FileNotFoundError:
         print(f"Error: The file '{transcript_path}' was not found.")

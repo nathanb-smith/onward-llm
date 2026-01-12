@@ -25,17 +25,10 @@ client = AzureOpenAI(
 
 def matchmaking_agent():
     """Reads a file and sends it to Azure AI for initial analysis."""
-    rif = Path.cwd()/"input_files/RIF.pdf"
-    rif_data = extract_form_data(rif)
-    notes = Path.cwd()/"input_files/notes.txt"
-    notes_content = notes.read_text(encoding="utf-8") # Standard in 2026
+    resume = Path.cwd()/"resume_files/resume.docx"
+    resume_data = resume.read_text(encoding="utf-8") # Standard in 2026
     try:
-        # Load the file content
-        transcript_path = Path.cwd()/"input_files/transcript.txt"
-        transcript_content = transcript_path.read_text(encoding="utf-8") # Standard in 2026
-        
-        # Create a specialized prompt for analysis
-        analysis_request = f"Please create a resume in an optimized Microsoft Word format from the provided information form, transcript, and interview notes. The summary should include 1-3 detailed bullet points for each of the following sections: Skills, Experience, Education, and Projects (if applicable):\n\n{rif_data}\n\nTranscript:\n\n{transcript_content}\n\nManager's notes:\n{notes_content}"
+        analysis_request = f"Please create a resume in an optimized Microsoft Word format from the provided information form, transcript, and interview notes. The summary should include 1-3 detailed bullet points for each of the following sections: Skills, Experience, Education, and Projects (if applicable):\n\n{resume_data}"
         conversation_history = []
         # Add the file content to history as a user message
         conversation_history.append({"role": "user", "content": analysis_request})
@@ -54,7 +47,7 @@ def matchmaking_agent():
         output_path = Path.cwd() / "output_files/generated_resume.docx"
         save_to_word(mk, output_path)
     except FileNotFoundError:
-        print(f"Error: The file '{transcript_path}' was not found.")
+        print(f"Error: The file '{resume}' was not found.")
     except Exception as e:
         print(f"An error occurred: {e}")
         
