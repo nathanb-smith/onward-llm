@@ -16,5 +16,8 @@ def main():
     print("Starting recommendation generation...")
     recommendations = recommendation_generator(embeddings)
     print("Process completed! Here are my top three job recommendations in descending order"
-          " based on your resume and job descriptions: Job number ", recommendations[0], ", Job number ",
-          recommendations[1], ", Job number ", recommendations[2],".")
+          " based on your resume and job descriptions: job number", recommendations[0], ", job number",
+          recommendations[1], ", and job number ", recommendations[2],".")
+
+if __name__ == "__main__":
+    main()
